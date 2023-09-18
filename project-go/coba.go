@@ -28,7 +28,12 @@ func main() {
 
 	// array
 	var arr = [...]int{1, 2, 3}
+	fmt.Println("ini array : ", arr)
 	fmt.Println("arr length : ", len(arr))
+
+	// slice
+	iniSlice := []int{1, 2, 3}
+	fmt.Println("ini slice : ", iniSlice)
 
 	// map
 	fmt.Println("Map")
@@ -48,4 +53,23 @@ func main() {
 
 	fmt.Println("numberB (value)   :", *numberB) // 4
 	fmt.Println("numberB (address) :", numberB)  // 0xc20800a220
+
+	// struct
+	type student struct {
+		name  string
+		grade int
+	}
+
+	// struct implementation
+	var s1 student
+	s1.name = "danar"
+	s1.grade = 2
+
+	// inisialisasi object struct
+	var s2 = student{}
+	s2.name = "danar"
+	s2.grade = 2
+
+	fmt.Println("name  :", s1.name)
+	fmt.Println("grade :", s2.grade)
 }

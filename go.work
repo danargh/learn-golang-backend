@@ -1,7 +1,6 @@
 go 1.21.0
 
 use (
-	./dasar/1-module/app
-	./dasar/1-module/module
 	./project-go
+  ./dasar/1-module/app
 )
