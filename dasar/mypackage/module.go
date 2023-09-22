@@ -1,4 +1,5 @@
-package main
+// mypackage/module.go
+package mypackage
 
 import (
 	"fmt"
@@ -6,7 +7,7 @@ import (
 	say_hello "github.com/danargh/my-golang-module-learning"
 )
 
-func main() {
+func ConsumeModule() {
 	var hello string = say_hello.SayHello("danar")
 	fmt.Println(hello)
 }
