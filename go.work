@@ -1,7 +1,0 @@
-go 1.21.1
-
-use (
-	./project-go
-	./dasar/1-module/app
-  ./dasar/1-module/app/helper
-  ./dasar/1-module/app/import
