@@ -2,6 +2,7 @@ package mypackage
 
 import (
 	"fmt"
+	"strings"
 )
 
 func LearnVariable() {
@@ -79,4 +80,86 @@ func LearnVariable() {
 	chicken["februari"] = 40
 	fmt.Println("januari", chicken["januari"]) // januari 50
 	fmt.Println("mei", chicken["mei"])
+
+	// * kombinasi slice dan map
+	var chickenCombine = []map[string]string{
+		{"name": "chicken blue", "gender": "male"},
+		{"name": "chicken red", "gender": "female"},
+	}
+	for _, chicken := range chickenCombine {
+		fmt.Print(chicken["gender"], " ", chicken["name"], "|")
+	}
+	fmt.Print("\n")
+
+	// * fungsi (closure)
+	adding := func(a, b int) (int, float32) {
+		return a + b, float32(a) / float32(b)
+	}
+	fmt.Println(adding(1, 2))
+
+	// * closure return fungsi
+	many, max := findMax([]int{1, 2, 3, 4, 5, 1, 2, 10, 10}, 5)
+	fmt.Println(many, max())
+
+	// * closure sebagai parameter
+	var data = []string{"wick", "jason", "ethan", "danar", "falal", "john"}
+
+	var dataContainsO = filter(data, func(each string) bool {
+		return strings.Contains(each, "o")
+	})
+	var dataLenght5 = filter(data, func(each string) bool {
+		return len(each) == 5
+	})
+	fmt.Println("data asli \t\t:", data)                     // data asli : [wick jason ethan]
+	fmt.Println("filter ada huruf \"o\"\t:", dataContainsO)  // filter ada huruf "o" : [jason]
+	fmt.Println("filter jumlah huruf \"5\"\t:", dataLenght5) // filter jumlah huruf "5" : [jason ethan]
+
+	// * pointer
+	var numberA int = 4
+	var numberB *int = &numberA                     // nilai pointer numberA atau address
+	numberA = 5                                     // ubah nilai numberA
+	fmt.Println("numberA (value)   :", numberA)     // 4
+	fmt.Println("numberA (address) :", &numberA)    // 0xc0000140a8
+	fmt.Println("numberB (value)   :", *numberB)    // 4
+	fmt.Println("numberB (address) :", numberB)     // 0xc0000140a8
+	fmt.Println("numberB (true address)", &numberB) // 0xc00000e028
+
+	// * struct
+	p := person{name: "danar", age: 20}
+	fmt.Println(p.getName()) // danar
+
+}
+
+// * struct
+type person struct {
+	name string
+	age  int
+}
+
+func (p person) getName() string {
+	return p.name
+}
+
+// * closure return fungsi
+func findMax(numbers []int, max int) (int, func() []int) {
+	var res []int
+	for _, e := range numbers {
+		if e <= max {
+			res = append(res, e)
+		}
+	}
+	return len(res), func() []int {
+		return res
+	}
+}
+
+// * closure sebagai parameter
+func filter(data []string, callback func(string) bool) []string {
+	var result []string
+	for _, each := range data {
+		if filtered := callback(each); filtered {
+			result = append(result, each)
+		}
+	}
+	return result
 }
