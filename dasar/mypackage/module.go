@@ -2,12 +2,16 @@
 package mypackage
 
 import (
-	"fmt"
+	f "fmt"
 
 	say_hello "github.com/danargh/my-golang-module-learning"
 )
 
 func ConsumeModule() {
 	var hello string = say_hello.SayHello("danar")
-	fmt.Println(hello)
+	f.Println(hello)
+
+	// * exported module
+	// fungsi, struct, propety yang memiliki huruf awal kapital merupakan exported / public
+
 }
